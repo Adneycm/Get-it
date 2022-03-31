@@ -1,0 +1,28 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+<img src="{% static 'notes/img/logo-getit.png' %}" class="logo"/>
+<p class="subtitle">Como o Post-it, mas com outro verbo</p>
+</div>
+
+<main class="container"> 
+<form method="post" class="form-card-edit" action="/update/{{note.id}}">
+    <input  type="hidden" name="id" value="{{note.id}}"/>
+    {% csrf_token %}
+    <input class="form-card-title" type="text" name="titulo" value= "{{note.title}}"/>
+    <input class="form-card-content" type="text" name="detalhes" value="{{note.content}}"/>
+    <input class="form-card-tag" type="text" name="tag" value="{{note.tag}}"/>
+    <button class="btn" type="submit">Update </button>
+  </form>
+
+
+
+</main>
+
+<footer class="footer">
+  <a href="/home" class="a"><input type="image" src="{% static 'notes/img/home.png' %}" class="home" alt="Submit"/></a>
+</footer>
+
+{% endblock %}
